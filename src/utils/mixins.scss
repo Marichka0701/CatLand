@@ -1,0 +1,11 @@
+@mixin flex_center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin onDesktop {
+  @media screen and (1024px <= width <= 1440px) {
+    @content;
+  }
+}

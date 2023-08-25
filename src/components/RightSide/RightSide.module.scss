@@ -1,0 +1,10 @@
+@import "src/utils/reset";
+@import "src/utils/mixins";
+
+.rightSide {
+  width: 680px;
+  height: 840px;
+  border-radius: 20px;
+  background: #FBE0DC;
+  @include flex_center;
+}

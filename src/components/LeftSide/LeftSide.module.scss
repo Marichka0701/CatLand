@@ -1,0 +1,69 @@
+@import "src/utils/reset";
+@import "src/utils/mixins";
+
+.leftSide {
+  display: flex;
+  flex-direction: column;
+  gap: 100px;
+
+  &_titles {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    h1 {
+      color: #1D1D1D;
+      font-size: 44px;
+      font-weight: 500;
+      line-height: 58px;
+    }
+
+    p {
+      color: #8C8C8C;
+      font-size: 20px;
+      font-weight: 400;
+    }
+  }
+
+  &_options {
+    display: flex;
+    gap: 16px;
+
+    &_option {
+      @include flex_center;
+      flex-direction: column;
+      gap: 10px;
+
+      &_standard {
+        width: 140px;
+        height: 200px;
+        border-radius: 20px;
+        @include flex_center;
+        transition: .5s;
+        &:hover {
+          border-color: #FFF;
+          transition: .5s;
+        }
+        &:active {
+          border-color: #FBE0DC;
+          transition: .5s;
+        }
+      }
+
+      &_voting {
+        border: 4px solid rgba(255, 255, 255, 0.60);
+        background: #B4B7FF;
+      }
+
+      &_breeds {
+        border: 4px solid rgba(255, 255, 255, 0.60);
+        background: #97EAB9;
+      }
+
+      &_gallery {
+        border: 4px solid rgba(255, 255, 255, 0.60);
+        background: #FFD280;
+      }
+    }
+  }
+}
