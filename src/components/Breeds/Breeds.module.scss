@@ -1,0 +1,58 @@
+@import "src/utils/reset";
+@import "src/utils/mixins";
+
+.breeds {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+
+  &_content {
+    width: 47.2vw;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    background: #FFFFFF;
+    border-radius: 20px;
+
+    &_functions {
+      @include flex_center;
+      gap: 10px;
+
+      &_select {
+        border-radius: 10px;
+        background: #F8F8F7;
+        padding: 8px 10px;
+        cursor: pointer;
+
+        color: #8C8C8C;
+        font-size: 16px;
+        line-height: 24px;
+
+        option {
+          background: #FFFFFF;
+          border-radius: 30px;
+        }
+      }
+
+      &_selectBreeds {
+        width: 220px;
+        height: 40px;
+      }
+
+      &_selectLimit {
+        width: 110px;
+        height: 40px;
+      }
+
+      &_button {
+        width: 40px;
+        height: 40px;
+        border-radius: 10px;
+        background: #F8F8F7;
+        @include flex_center;
+      }
+    }
+  }
+}

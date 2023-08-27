@@ -1,0 +1,11 @@
+@import "src/utils/reset";
+@import "src/utils/mixins";
+
+.backButton {
+  width: 40px;
+  height: 40px;
+  @include flex_center;
+  border-radius: 10px;
+  background: var(--color-hovered);
+  cursor: pointer;
+}

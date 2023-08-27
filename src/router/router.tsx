@@ -2,6 +2,9 @@ import {createBrowserRouter} from "react-router-dom";
 
 import MainLayout from "../layouts/MainLayout/MainLayout";
 import Home from "../pages/Home/Home";
+import Breeds from "../components/Breeds/Breeds";
+import DetailedBreeds from "../components/Breeds/DetailedBreeds/DetailedBreeds";
+import {MainRoutes} from "./MainRoutes";
 
 const router = createBrowserRouter([
     {
@@ -9,14 +12,16 @@ const router = createBrowserRouter([
         element: <MainLayout/>,
         children: [
             {
-                index: true,
+                path: '/',
                 element: <Home/>
             },
             {
-                path: '/breeds',
+                path: MainRoutes.BREEDS,
+                element: <Breeds/>
             },
             {
-                path: '/gallery',
+                path: MainRoutes.BREEDS_ID,
+                element: <DetailedBreeds/>
             },
         ]
     }

@@ -8,8 +8,13 @@
   gap: 80px;
   margin: 30px 30px 30px 150px;
 
-  @include onDesktop {
+  //@include onDesktop {
+  //  flex-direction: column;
+  //}
+
+  @include onTablet {
     flex-direction: column;
+    margin: 30px;
   }
 
   &_leftSide {

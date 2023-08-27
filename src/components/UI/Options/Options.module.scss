@@ -1,0 +1,56 @@
+@import "src/utils/reset";
+@import "src/utils/mixins";
+
+.options {
+  display: flex;
+  gap: 10px;
+
+  &_form {
+    & > div {
+      width: 32.6vw;
+      height: 60px;
+      position: relative;
+
+      & > input {
+        width: 32.6vw;
+        height: 60px;
+        border-radius: 20px;
+        padding: 15px 60px 15px 10px;
+        transition: .5s ease-in-out;
+
+        color: #8C8C8C;
+        font-size: 20px;
+        line-height: 30px;
+
+        &::placeholder {
+          color: #8C8C8C;;
+        }
+      }
+
+      & > div {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        width: 40px;
+        height: 40px;
+        border-radius: 10px;
+        background: var(--color-hovered);
+        @include flex_center;
+        cursor: pointer;
+      }
+    }
+  }
+
+  &_operations {
+    display: flex;
+    gap: 10px;
+
+    &_standard {
+      width: 60px;
+      height: 60px;
+      @include flex_center;
+      border-radius: 20px;
+      background: var(--color-default);
+    }
+  }
+}

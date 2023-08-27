@@ -9,3 +9,9 @@
     @content;
   }
 }
+
+@mixin onTablet {
+  @media screen and (768px <= width <= 1024px) {
+    @content;
+  }
+}

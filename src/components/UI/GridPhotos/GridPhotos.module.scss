@@ -1,0 +1,486 @@
+@import "src/utils/reset";
+
+.gridFive {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 140px);
+  gap: 20px 20px;
+  grid-template-areas:
+    "one two three"
+    "one four four"
+    "five four four";
+
+  &_item {
+    position: relative;
+
+    & > img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 20px;
+    }
+  }
+
+  &_one {
+    grid-area: one;
+
+    & >img {
+      grid-area: one;
+    }
+  }
+  &_two {
+    grid-area: two;
+
+    & >img {
+      grid-area: two;
+    }
+  }
+  &_three {
+    grid-area: three;
+
+    & >img {
+      grid-area: three;
+    }
+  }
+  &_four {
+    grid-area: four;
+
+    & >img {
+      grid-area: four;
+    }
+  }
+  &_five {
+    grid-area: five;
+
+    & >img {
+      grid-area: five;
+    }
+  }
+}
+
+
+.gridTen {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(6, 140px);
+  gap: 20px 20px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "one two three"
+    "one four four"
+    "five four four"
+    "six seven eight"
+    "nine nine eight"
+    "nine nine ten";
+
+  &_item {
+    position: relative;
+
+
+    & > img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 20px;
+    }
+  }
+
+  &_one {
+    grid-area: one;
+
+    & >img {
+      grid-area: one;
+    }
+  }
+
+  &_two {
+    grid-area: two;
+
+    & >img {
+      grid-area: two;
+    }
+
+  }
+
+  &_three {
+    grid-area: three;
+
+    & >img {
+      grid-area: three;
+    }
+  }
+
+  &_four {
+    grid-area: four;
+
+    & >img {
+      grid-area: four;
+    }
+  }
+
+  &_five {
+    grid-area: five;
+
+    & >img {
+      grid-area: five;
+    }
+  }
+
+  &_six {
+    grid-area: six;
+
+    & >img {
+      grid-area: six;
+    }
+  }
+
+  &_seven {
+    grid-area: seven;
+
+    & >img {
+      grid-area: seven;
+    }
+  }
+
+  &_eight {
+    grid-area: eight;
+
+    & >img {
+      grid-area: eight;
+    }
+  }
+
+  &_nine {
+    grid-area: nine;
+
+    & >img {
+      grid-area: nine;
+    }
+  }
+
+  &_ten {
+    grid-area: ten;
+
+    & >img {
+      grid-area: ten;
+    }
+  }
+}
+
+
+.gridFifteen {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(9, 140px);
+  gap: 20px 20px;
+  grid-template-areas:
+    "one two three"
+    "one four four"
+    "five four four"
+    "six seven eight"
+    "nine nine eight"
+    "nine nine ten"
+    "eleven twelve thirteen"
+    "eleven fourteen fourteen"
+    "fifteen fourteen fourteen";
+
+  &_item {
+    position: relative;
+
+    & > img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 20px;
+    }
+  }
+
+  &_one {
+    grid-area: one;
+
+    & >img {
+      grid-area: one;
+    }
+  }
+
+  &_two {
+    grid-area: two;
+
+    & >img {
+      grid-area: two;
+    }
+
+  }
+
+  &_three {
+    grid-area: three;
+
+    & >img {
+      grid-area: three;
+    }
+  }
+
+  &_four {
+    grid-area: four;
+
+    & >img {
+      grid-area: four;
+    }
+  }
+
+  &_five {
+    grid-area: five;
+
+    & >img {
+      grid-area: five;
+    }
+  }
+
+  &_six {
+    grid-area: six;
+
+    & >img {
+      grid-area: six;
+    }
+  }
+
+  &_seven {
+    grid-area: seven;
+
+    & >img {
+      grid-area: seven;
+    }
+  }
+
+  &_eight {
+    grid-area: eight;
+
+    & >img {
+      grid-area: eight;
+    }
+  }
+
+  &_nine {
+    grid-area: nine;
+
+    & >img {
+      grid-area: nine;
+    }
+  }
+
+  &_ten {
+    grid-area: ten;
+
+    & >img {
+      grid-area: ten;
+    }
+  }
+
+  &_eleven {
+    grid-area: eleven;
+
+    & >img {
+      grid-area: eleven;
+    }
+  }
+  &_twelve {
+    grid-area: twelve;
+
+    & >img {
+      grid-area: twelve;
+    }
+  }
+  &_thirteen {
+    grid-area: thirteen;
+
+    & >img {
+      grid-area: thirteen;
+    }
+  }
+  &_fourteen {
+    grid-area: fourteen;
+
+    & >img {
+      grid-area: fourteen;
+    }
+  }
+  &_fifteen {
+    grid-area: fifteen;
+
+    & >img {
+      grid-area: fifteen;
+    }
+  }
+}
+
+
+.gridTwenty {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(12, 140px);
+  gap: 20px 20px;
+  grid-template-areas:
+    "one two three"
+    "one four four"
+    "five four four"
+    "six seven eight"
+    "nine nine eight"
+    "nine nine ten"
+    "eleven twelve thirteen"
+    "eleven fourteen fourteen"
+    "fifteen fourteen fourteen"
+    "sixteen seventeen eighteen"
+    "nineteen nineteen eighteen"
+    "nineteen nineteen twenty";
+
+  &_item {
+    position: relative;
+
+    & > img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 20px;
+    }
+  }
+
+  &_one {
+    grid-area: one;
+
+    & >img {
+      grid-area: one;
+    }
+  }
+
+  &_two {
+    grid-area: two;
+
+    & >img {
+      grid-area: two;
+    }
+
+  }
+
+  &_three {
+    grid-area: three;
+
+    & >img {
+      grid-area: three;
+    }
+  }
+
+  &_four {
+    grid-area: four;
+
+    & >img {
+      grid-area: four;
+    }
+  }
+
+  &_five {
+    grid-area: five;
+
+    & >img {
+      grid-area: five;
+    }
+  }
+
+  &_six {
+    grid-area: six;
+
+    & >img {
+      grid-area: six;
+    }
+  }
+
+  &_seven {
+    grid-area: seven;
+
+    & >img {
+      grid-area: seven;
+    }
+  }
+
+  &_eight {
+    grid-area: eight;
+
+    & >img {
+      grid-area: eight;
+    }
+  }
+
+  &_nine {
+    grid-area: nine;
+
+    & >img {
+      grid-area: nine;
+    }
+  }
+
+  &_ten {
+    grid-area: ten;
+
+    & >img {
+      grid-area: ten;
+    }
+  }
+
+  &_eleven {
+    grid-area: eleven;
+
+    & >img {
+      grid-area: eleven;
+    }
+  }
+  &_twelve {
+    grid-area: twelve;
+
+    & >img {
+      grid-area: twelve;
+    }
+  }
+  &_thirteen {
+    grid-area: thirteen;
+
+    & >img {
+      grid-area: thirteen;
+    }
+  }
+  &_fourteen {
+    grid-area: fourteen;
+
+    & >img {
+      grid-area: fourteen;
+    }
+  }
+  &_fifteen {
+    grid-area: fifteen;
+
+    & >img {
+      grid-area: fifteen;
+    }
+  }
+  &_sixteen {
+    grid-area: sixteen;
+
+    & >img {
+      grid-area: sixteen;
+    }
+  }
+  &_seventeen {
+    grid-area: seventeen;
+
+    & >img {
+      grid-area: seventeen;
+    }
+  }
+  &_eighteen {
+    grid-area: eighteen;
+  }
+  &_nineteen {
+    grid-area: nineteen;
+  }
+  &_twenty {
+    grid-area: twenty;
+  }
+}

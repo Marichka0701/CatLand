@@ -1,0 +1,107 @@
+@import "src/utils/reset";
+@import "src/utils/mixins";
+
+.detailedBreeds {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  &_content {
+    width: 47.2vw;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    border-radius: 20px;
+    padding: 20px;
+    background: var(--color-default);
+
+    &_functions {
+      display: flex;
+      gap: 10px;
+    }
+
+    &_container {
+      width: 100%;
+      @include flex_center;
+      flex-direction: column;
+      gap: 50px;
+
+      &_swiper {
+        width: 100%;
+        max-height: 360px;
+
+        &_item {
+          width: 100%;
+          max-height: 360px;
+          border-radius: 20px;
+        }
+      }
+
+      &_info {
+        width: 100%;
+        border-radius: 20px;
+        border: 2px solid #FBE0DC;
+        padding: 20px 40px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        position: relative;
+
+        &_name {
+          position: absolute;
+          top: -20px;
+          left: 3%;
+          background: var(--color-default);
+          padding: 0 20px;
+
+          color: #1D1D1D;
+          font-size: 36px;
+          font-weight: 500;
+        }
+
+        &_family {
+          color: #8C8C8C;
+          font-size: 20px;
+          font-weight: 500;
+        }
+
+        &_columns {
+          display: flex;
+          justify-content: space-between;
+
+          &>div:nth-child(1) {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-width: 250px;
+
+            &>p:nth-child(1) {
+              color: #1D1D1D;
+              font-weight: 500;
+            }
+
+            &>p:nth-child(2) {
+              color: #8C8C8C;
+            }
+          }
+
+          &>div:nth-child(2) {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+
+            &>p {
+              color: #1D1D1D;
+              font-weight: 500;
+
+              &>span {
+                color: #8C8C8C;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -6,11 +6,11 @@
   height: 36px;
   padding: 10px;
   border-radius: 10px;
-  background: #FFF;
+  background: var(--color-default);
   @include flex_center;
   transition: .5s;
 
-  color: #FF868E;
+  color: var(--color-active);
   font-size: 12px;
   font-weight: 500;
   line-height: 133.333%;
@@ -19,12 +19,12 @@
 
   &:hover {
     transition: .5s;
-    background: #FBE0DC;
+    background: var(--color-hovered);
   }
 
   &:active {
-    color: #FFFFFF;
+    color: var(--color-default);
     transition: .5s;
-    background: #FF868E;
+    background: var(--color-active);
   }
 }

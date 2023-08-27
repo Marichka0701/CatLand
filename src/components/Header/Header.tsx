@@ -1,14 +1,11 @@
-import React, {FC, PropsWithChildren} from 'react';
+import React, {FC} from 'react';
 
 import logo from './images/logo.png';
 
-interface IProps extends PropsWithChildren {
 
-}
-
-const Header:FC<IProps> = () => {
+const Header:FC = () => {
     return (
-        <header>
+        <header style={{position: 'sticky', top: 0}}>
             <img src={logo} alt="logo PetsPaw"/>
         </header>
     );

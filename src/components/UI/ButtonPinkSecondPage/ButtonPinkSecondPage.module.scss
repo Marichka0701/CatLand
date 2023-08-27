@@ -1,0 +1,14 @@
+@import "src/utils/reset";
+@import "src/utils/mixins";
+
+.button {
+  padding: 5px 30px;
+  border-radius: 10px;
+  @include flex_center;
+
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 150%;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
