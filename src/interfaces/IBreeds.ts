@@ -13,6 +13,7 @@ interface IBreedsId {
             metric: string;
         };
         life_span: string;
+        description: string;
     }[];
 }
 

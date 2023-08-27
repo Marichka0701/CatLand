@@ -3,6 +3,7 @@ const baseURL = 'https://api.thecatapi.com/v1/';
 
 const breeds = '/breeds';
 const images = '/images/search';
+const votes = '/votes';
 
 const endPoints = {
     breeds: {
@@ -11,6 +12,9 @@ const endPoints = {
     },
     images: {
         base: images,
+    },
+    votes: {
+        base: votes,
     }
 }
 

@@ -1,0 +1,22 @@
+.swiper-horizontal > .swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal {
+    width: 90px !important;
+    height: 30px;
+    bottom: 5px !important;
+    left: 45% !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #FFFFFF;
+    border-radius: 20px;
+}
+
+.swiper-pagination-bullet {
+    background-color: #FBE0DC !important;
+    opacity: 1 !important;
+    z-index: 1000 !important;
+}
+
+.swiper-pagination-bullet-active {
+    z-index: 1000 !important;
+    background-color: #FF868E !important;
+}

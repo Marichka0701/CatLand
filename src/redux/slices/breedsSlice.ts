@@ -8,12 +8,14 @@ interface IState {
     breeds: IBreeds[],
     breeds_ids_default: string,
     selected_breeds: IBreedsId,
+    limited_ids: number,
 }
 
 const initialState: IState = {
     breeds: [],
     breeds_ids_default: 'abys,aege,abob,acur,asho',
     selected_breeds: null,
+    limited_ids: null,
 }
 
 const getAll = createAsyncThunk<IBreeds[], void>(
@@ -48,6 +50,14 @@ const breedsSlice = createSlice({
     reducers: {
         setSelectedBreeds: (state, action) => {
             state.selected_breeds = action.payload;
+        },
+
+        setCountIds: (state, action) => {
+            state.limited_ids = action.payload;
+            const limitedBreeds = state.breeds.slice(0, state.limited_ids);
+            const breedsIds = limitedBreeds.map(breed => breed.id);
+            state.breeds_ids_default = breedsIds.join(',');
+            // state.breeds_ids_default = state.breeds.slice(0, state.count_ids).join(',');
         }
 
     },

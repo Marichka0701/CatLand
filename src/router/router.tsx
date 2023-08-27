@@ -5,6 +5,7 @@ import Home from "../pages/Home/Home";
 import Breeds from "../components/Breeds/Breeds";
 import DetailedBreeds from "../components/Breeds/DetailedBreeds/DetailedBreeds";
 import {MainRoutes} from "./MainRoutes";
+import Voting from "../components/Voting/Voting";
 
 const router = createBrowserRouter([
     {
@@ -17,12 +18,16 @@ const router = createBrowserRouter([
             },
             {
                 path: MainRoutes.BREEDS,
-                element: <Breeds/>
+                element: <Breeds/>,
             },
             {
                 path: MainRoutes.BREEDS_ID,
-                element: <DetailedBreeds/>
+                element: <DetailedBreeds/>,
             },
+            {
+                path: MainRoutes.VOTING,
+                element: <Voting/>,
+            }
         ]
     }
 ]);

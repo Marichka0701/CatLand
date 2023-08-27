@@ -1,0 +1,36 @@
+@import "src/utils/reset";
+@import "src/utils/mixins";
+
+.history_item {
+  padding: 15px 20px;
+  background: #F8F8F7;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  &>div {
+    display: flex;
+    gap: 20px;
+  }
+
+  &_time {
+    padding: 3px 10px;
+    border-radius: 5px;
+    background: var(--color-default);
+
+    color: #1D1D1D;
+    line-height: 24px;
+  }
+
+  &_info {
+    color: #8C8C8C;
+    line-height: 24px;
+
+    &>span {
+      color: #1D1D1D;
+      font-weight: 500;
+      line-height: 24px;
+    }
+  }
+}

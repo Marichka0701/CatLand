@@ -15,47 +15,40 @@ import {breedsActions} from "../../redux/slices/breedsSlice";
 import {imagesActions} from "../../redux/slices/imagesSlice";
 import GridPhotos from "../UI/GridPhotos/GridPhotos";
 import Options from "../UI/Options/Options";
+import {Loader} from "../UI/Loader/Loader";
 
 const Breeds: FC = () => {
     const dispatch = useAppDispatch();
     const {breeds, breeds_ids_default} = useAppSelector(store => store.breeds);
+    const {status} = useAppSelector(state => state.images);
 
     const [selectedLimit, setSelectedLimit] = useState<number>(5);
 
     useEffect(() => {
         const initialData = async () => {
             await dispatch(breedsActions.getAll());
+            await dispatch(breedsActions.setCountIds(selectedLimit));
             await dispatch(imagesActions.getImages({ids: breeds_ids_default, limit: selectedLimit}));
         }
         initialData();
-
-    //     fetch(`https://api.thecatapi.com/v1/images/search?breed_ids=abys,aege,abob,acur,asho&limit=5`, {
-    //         headers: {
-    //             'x-api-key': 'live_9XyMuVxuNNkFBccqEtoaWtGFbrek4oEMT80wjhnsz6LJwwbWDtCo7loKnD8h0GX9'
-    //         }
-    //     })
-    //         .then(response => response.json())
-    //         .then(data => {
-    //             console.log(data);
-    //             // Тут ви можете обробити дані, які отримали від сервера
-    //         })
-    //         .catch(error => {
-    //             // Тут ви можете обробити помилку, якщо вона виникла під час запиту
-    //         })
-    //
-    //     // fetch(`https://api.thecatapi.com/v1/images/search?breed_ids=${breeds_ids_default.join(',')}&limit=5`).then(value => value.json()).then(value => console.log(value))
-    }, [selectedLimit]);
+    }, [breeds_ids_default, selectedLimit]);
 
     const handleSelectedLimit = (e: React.ChangeEvent<HTMLSelectElement>) => {
         setSelectedLimit(+e.target.value);
+        // breedsActions.setCountIds(+e.target.value);
     };
 
+    // const handleSortingASC = () => {
+    //     dispatch(imagesActions.setOrder('ASC'));
+    // };
+
     return (
+
         <div className={styles.breeds}>
             <Options/>
             <div className={styles.breeds_content}>
                 <div className={styles.breeds_content_functions}>
-                    <BackButton link={'/home'}/>
+                    <BackButton link={'/'}/>
                     <ButtonPinkSecondPage name={'breeds'} color={'#FF868E'} background={'#FBE0DC'}/>
 
                     <select
@@ -82,16 +75,26 @@ const Breeds: FC = () => {
                         <option value="20">Limit: 20</option>
                     </select>
 
-                    <button className={styles.breeds_content_functions_button}>
-                        <img src={AB} alt="sorting from A to B logo"/>
-                    </button>
+                    {/*<button*/}
+                    {/*    onClick={handleSortingASC}*/}
+                    {/*    className={styles.breeds_content_functions_button}*/}
+                    {/*>*/}
+                    {/*    <img src={AB} alt="sorting from A to B logo"/>*/}
+                    {/*</button>*/}
 
-                    <button className={styles.breeds_content_functions_button}>
-                        <img src={AB} alt="sorting from A to B logo"/>
-                    </button>
+                    {/*<button className={styles.breeds_content_functions_button}>*/}
+                    {/*    <img src={AB} alt="sorting from A to B logo"/>*/}
+                    {/*</button>*/}
                 </div>
-
-                <GridPhotos limit={selectedLimit}/>
+                {
+                    status === 'loading' ?
+                        <div className={styles.breeds_content_loaderContainer}>
+                            <div className={styles.breeds_content_loaderContainer_loader}>
+                                <Loader/>
+                            </div>
+                        </div> :
+                        <GridPhotos limit={selectedLimit}/>
+                }
             </div>
         </div>
     );

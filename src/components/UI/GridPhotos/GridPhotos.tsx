@@ -40,7 +40,7 @@ const GridPhotos: FC<IProps> = ({limit}) => {
     const handleNavigate = async (item: IImages) => {
         await dispatch(breedsActions.setSelectedBreeds(item));
         const id = item?.breeds[0]?.id;
-        selected_breeds && navigate(`/breeds/${id}`);
+        navigate(`/breeds/${id}`);
     };
 
     return (

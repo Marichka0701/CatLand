@@ -12,6 +12,11 @@ const imagesService = {
             'x-api-key': 'live_9XyMuVxuNNkFBccqEtoaWtGFbrek4oEMT80wjhnsz6LJwwbWDtCo7loKnD8h0GX9'
         }
     }),
+    getRandom: ():IRes<IImages[]> => axiosService.get(endPoints.images.base, {
+        headers: {
+            'x-api-key': 'live_9XyMuVxuNNkFBccqEtoaWtGFbrek4oEMT80wjhnsz6LJwwbWDtCo7loKnD8h0GX9'
+        }
+    }),
 }
 
 export {

@@ -1,8 +1,9 @@
 import {IBreeds} from "./IBreeds";
 
 interface IImages {
-    breeds: IBreeds[],
+    id: string
     url: string,
+    breeds: IBreeds[],
 }
 
 export type {
