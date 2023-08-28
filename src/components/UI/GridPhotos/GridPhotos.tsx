@@ -77,6 +77,7 @@ const GridPhotos: FC<IProps> = ({limit}) => {
                                         key={index}
                                         onMouseEnter={() => handleMouseEnter(index)}
                                         onMouseLeave={handleMouseLeave}
+                                        onClick={() => handleNavigate(images[index])}
                                     >
                                         <img src={images[index]?.url} alt="cat`s photo"/>
                                         {
@@ -97,6 +98,7 @@ const GridPhotos: FC<IProps> = ({limit}) => {
                                             key={index}
                                             onMouseEnter={() => handleMouseEnter(index)}
                                             onMouseLeave={handleMouseLeave}
+                                            onClick={() => handleNavigate(images[index])}
                                         >
                                             <img src={images[index]?.url} alt="cat`s photo"/>
                                             {
@@ -117,6 +119,7 @@ const GridPhotos: FC<IProps> = ({limit}) => {
                                                 key={index}
                                                 onMouseEnter={() => handleMouseEnter(index)}
                                                 onMouseLeave={handleMouseLeave}
+                                                onClick={() => handleNavigate(images[index])}
                                             >
                                                 <img src={images[index]?.url} alt="cat`s photo"/>
                                                 {

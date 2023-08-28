@@ -31,6 +31,18 @@ const getAll = createAsyncThunk<IBreeds[], void>(
     }
 )
 
+const getByBreedsName = createAsyncThunk(
+    'breedsSlice/getByBreedsId',
+    async (_, {rejectWithValue}) => {
+        try {
+
+        } catch (e) {
+            const error = e as AxiosError;
+            return rejectWithValue(error.response.data);
+        }
+    }
+)
+
 // const getById = createAsyncThunk<IBreeds, {id: string}>(
 //     'breedsSlice/getById',
 //     async ({id}, {rejectWithValue}) => {

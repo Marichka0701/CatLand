@@ -1,7 +1,7 @@
 @import "src/utils/reset";
 @import "src/utils/mixins";
 
-.likes {
+.dislikes {
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -34,7 +34,6 @@
     }
 
     &_container {
-      width: 100%;
       @include flex_center;
       flex-direction: column;
       gap: 20px;

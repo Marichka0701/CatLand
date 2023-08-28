@@ -1,3 +1,4 @@
+/* css for swiper */
 .swiper-horizontal > .swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal {
     width: 90px !important;
     height: 30px;
@@ -19,4 +20,18 @@
 .swiper-pagination-bullet-active {
     z-index: 1000 !important;
     background-color: #FF868E !important;
+}
+
+/* css for pagination */
+
+.css-19xm0h7-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected {
+    background: #FF868E !important;
+    color: #FFF !important;
+    border: none !important;
+}
+
+.css-19xm0h7-MuiButtonBase-root-MuiPaginationItem-root {
+    background: #FBE0DC !important;
+    color: #FF868E !important;
+    border: none !important;
 }

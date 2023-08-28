@@ -1,15 +1,8 @@
 import React, {FC, useEffect, useState} from 'react';
 
 import styles from './Breeds.module.scss';
-import search from '../UI/Options/images/search.png';
-import smile from '../UI/Options/images/smile.png';
-import favourite from '../UI/Options/images/favourite.png';
-import sad from '../UI/Options/images/sad.png';
 import BackButton from "../UI/BackButton/BackButton";
 import ButtonPinkSecondPage from "../UI/ButtonPinkSecondPage/ButtonPinkSecondPage";
-import {IBreeds} from "../../interfaces/IBreeds";
-import AB from './images/AB_sorting.png';
-import BA from './images/BA_sorting.png';
 import {useAppDispatch, useAppSelector} from "../../hooks/reduxHooks";
 import {breedsActions} from "../../redux/slices/breedsSlice";
 import {imagesActions} from "../../redux/slices/imagesSlice";
@@ -23,6 +16,7 @@ const Breeds: FC = () => {
     const {status} = useAppSelector(state => state.images);
 
     const [selectedLimit, setSelectedLimit] = useState<number>(5);
+    const [selectedBreeds, setSelectedBreeds] = useState<string>(null);
 
     useEffect(() => {
         const initialData = async () => {
@@ -33,14 +27,22 @@ const Breeds: FC = () => {
         initialData();
     }, [breeds_ids_default, selectedLimit]);
 
-    const handleSelectedLimit = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        setSelectedLimit(+e.target.value);
-        // breedsActions.setCountIds(+e.target.value);
-    };
+    const handleSelectBreeds = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        setSelectedBreeds(e.target.value);
+    }
 
-    // const handleSortingASC = () => {
-    //     dispatch(imagesActions.setOrder('ASC'));
-    // };
+    useEffect(() => {
+        const filteredBreeds = async () => {
+            await dispatch(imagesActions.getImages({ids: selectedBreeds, limit: selectedLimit}));
+        }
+        filteredBreeds();
+    }, [selectedBreeds, selectedLimit])
+
+    console.log(selectedBreeds);
+
+    const handleSelectLimit = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        setSelectedLimit(+e.target.value);
+    };
 
     return (
 
@@ -55,6 +57,7 @@ const Breeds: FC = () => {
                         className={`${styles.breeds_content_functions_select} ${styles.breeds_content_functions_selectBreeds}`}
                         name="breeds"
                         id="breeds-select"
+                        onChange={(e) => handleSelectBreeds(e)}
                     >
                         <option value="">All breeds</option>
                         {
@@ -67,24 +70,13 @@ const Breeds: FC = () => {
                         className={`${styles.breeds_content_functions_select} ${styles.breeds_content_functions_selectLimit}`}
                         name="limit"
                         id="limit-select"
-                        onChange={(e) => handleSelectedLimit(e)}
+                        onChange={(e) => handleSelectLimit(e)}
                     >
                         <option value="5">Limit: 5</option>
                         <option value="10">Limit: 10</option>
                         <option value="15">Limit: 15</option>
                         <option value="20">Limit: 20</option>
                     </select>
-
-                    {/*<button*/}
-                    {/*    onClick={handleSortingASC}*/}
-                    {/*    className={styles.breeds_content_functions_button}*/}
-                    {/*>*/}
-                    {/*    <img src={AB} alt="sorting from A to B logo"/>*/}
-                    {/*</button>*/}
-
-                    {/*<button className={styles.breeds_content_functions_button}>*/}
-                    {/*    <img src={AB} alt="sorting from A to B logo"/>*/}
-                    {/*</button>*/}
                 </div>
                 {
                     status === 'loading' ?

@@ -42,16 +42,19 @@ const Likes = () => {
                         </div>
                     </div>
                 ) : (
-                    <div className={styles.likes_content_photos}>
-                        {visibleLikedPhotos.map((item, index) => (
-                            <img
-                                className={styles.likes_content_photos_item}
-                                key={index}
-                                src={item.image.url}
-                                alt={`photo ${item.image_id}`}
-                            />
-                        ))}
+                    <div className={styles.likes_content_container}>
+                        <div className={styles.likes_content_container_photos}>
+                            {visibleLikedPhotos.map((item, index) => (
+                                <img
+                                    className={styles.likes_content_container_photos_item}
+                                    key={index}
+                                    src={item.image.url}
+                                    alt={`photo ${item.image_id}`}
+                                />
+                            ))}
+                        </div>
                         <Pagination
+                            // className={styles.likes_content_container_pagination}
                             count={Math.ceil(likedPhotos.length / itemsPerPage)}
                             variant="outlined"
                             shape="rounded"

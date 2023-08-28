@@ -8,6 +8,7 @@ import {MainRoutes} from "./MainRoutes";
 import Voting from "../components/Voting/Voting";
 import Likes from "../components/Likes/Likes";
 import Favourites from "../components/Favourites/Favourites";
+import Dislikes from "../components/Dislikes/Dislikes";
 
 const router = createBrowserRouter([
     {
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
             {
                 path: MainRoutes.FAVOURITES,
                 element: <Favourites/>,
+            },
+            {
+                path: MainRoutes.DISLIKES,
+                element: <Dislikes/>,
             },
         ]
     }

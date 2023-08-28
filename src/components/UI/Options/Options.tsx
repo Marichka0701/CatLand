@@ -19,7 +19,7 @@ const Options = () => {
     };
 
     const handleNavigateToDislikesPage = () => {
-        navigate(MainRoutes.FAVOURITES);
+        navigate(MainRoutes.DISLIKES);
     };
 
     return (
