@@ -73,9 +73,9 @@ const DetailedBreeds = () => {
                                 // pagination={{
                                 //     clickable: true,
                                 // }}
-
+                                //
                                 // navigation={true}
-
+                                //
                                 // modules={[Pagination]}
                                 className="mySwiper"
                             >

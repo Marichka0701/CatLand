@@ -5,8 +5,23 @@ import search from "./images/search.png";
 import smile from "./images/smile.png";
 import favourite from "./images/favourite.png";
 import sad from "./images/sad.png";
+import {useNavigate} from "react-router-dom";
+import {MainRoutes} from "../../../router/MainRoutes";
 
 const Options = () => {
+    const navigate = useNavigate();
+    const handleNavigateToLikesPage = () => {
+        navigate(MainRoutes.LIKES);
+    };
+
+    const handleNavigateToFavouritePage = () => {
+        navigate(MainRoutes.FAVOURITES);
+    };
+
+    const handleNavigateToDislikesPage = () => {
+        navigate(MainRoutes.FAVOURITES);
+    };
+
     return (
         <div className={styles.options}>
             <form className={styles.options_form} action="#">
@@ -22,16 +37,19 @@ const Options = () => {
             </form>
             <div className={styles.options_operations}>
                 <div
+                    onClick={handleNavigateToLikesPage}
                     className={`${styles.options_operations_smile} ${styles.options_operations_standard}`}>
                     <img src={smile} alt="smile icon"/>
                 </div>
 
                 <div
+                    onClick={handleNavigateToFavouritePage}
                     className={`${styles.options_operations_favourite} ${styles.options_operations_standard}`}>
                     <img src={favourite} alt="favourite icon"/>
                 </div>
 
                 <div
+                    onClick={handleNavigateToDislikesPage}
                     className={`${styles.options_operations_sad} ${styles.options_operations_standard}`}>
                     <img src={sad} alt="sad icon"/>
                 </div>

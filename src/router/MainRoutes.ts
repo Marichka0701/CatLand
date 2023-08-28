@@ -4,6 +4,9 @@ const MainRoutes = {
     BREEDS_ID: '/breeds/:id',
     GALLERY: '/gallery',
     VOTING: '/voting',
+    LIKES: '/likes',
+    DISLIKES: '/dislikes',
+    FAVOURITES: '/favourites',
 }
 
 export {

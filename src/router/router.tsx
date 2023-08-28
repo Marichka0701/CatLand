@@ -6,6 +6,8 @@ import Breeds from "../components/Breeds/Breeds";
 import DetailedBreeds from "../components/Breeds/DetailedBreeds/DetailedBreeds";
 import {MainRoutes} from "./MainRoutes";
 import Voting from "../components/Voting/Voting";
+import Likes from "../components/Likes/Likes";
+import Favourites from "../components/Favourites/Favourites";
 
 const router = createBrowserRouter([
     {
@@ -27,7 +29,15 @@ const router = createBrowserRouter([
             {
                 path: MainRoutes.VOTING,
                 element: <Voting/>,
-            }
+            },
+            {
+                path: MainRoutes.LIKES,
+                element: <Likes/>,
+            },
+            {
+                path: MainRoutes.FAVOURITES,
+                element: <Favourites/>,
+            },
         ]
     }
 ]);

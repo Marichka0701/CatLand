@@ -8,12 +8,12 @@ const votingService = {
             'x-api-key': 'live_9XyMuVxuNNkFBccqEtoaWtGFbrek4oEMT80wjhnsz6LJwwbWDtCo7loKnD8h0GX9'
         }
     }),
-    getMoreInfo: (id: number) => axiosService.get(endPoints.votes.base, {
+    getMoreInfo: () => axiosService.get(endPoints.votes.base, {
         headers: {
             'x-api-key': 'live_9XyMuVxuNNkFBccqEtoaWtGFbrek4oEMT80wjhnsz6LJwwbWDtCo7loKnD8h0GX9'
         },
         params: {
-            id,
+            order: 'DESC',
         }
     }),
 }

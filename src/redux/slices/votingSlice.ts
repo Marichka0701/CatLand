@@ -12,7 +12,10 @@ interface IState {
     like: number,
     dislike: number,
     history: IResVote[],
-    historyExtended: any;
+    historyExtended: any,
+    likedPhotos: IResMoreInfoVote[],
+    dislikedPhotos: IResMoreInfoVote[],
+    loading: string,
 }
 
 const initialState:IState = {
@@ -20,7 +23,10 @@ const initialState:IState = {
     like: 1,
     dislike: -1,
     history: [],
-    historyExtended: null
+    historyExtended: null,
+    likedPhotos: [],
+    dislikedPhotos: [],
+    loading: '',
 }
 
 const vote = createAsyncThunk<IResVote, {params:IVote}>(
@@ -36,11 +42,11 @@ const vote = createAsyncThunk<IResVote, {params:IVote}>(
     }
 )
 
-const getMoreInfo = createAsyncThunk<IResMoreInfoVote, {id: number}>(
+const getMoreInfo = createAsyncThunk<IResMoreInfoVote, void>(
     'votingSlice/getMoreInfo',
-    async ({id}, {rejectWithValue}) => {
+    async (_, {rejectWithValue}) => {
         try {
-            const {data} = await votingService.getMoreInfo(id);
+            const {data} = await votingService.getMoreInfo();
             return data;
         } catch (e) {
             const error = e as AxiosError;
@@ -61,6 +67,12 @@ const votingSlice = createSlice({
         })
         .addCase(getMoreInfo.fulfilled, (state, action) => {
             state.historyExtended = action.payload;
+            state.likedPhotos = state.historyExtended.filter((item:IResMoreInfoVote) => item.value === 1);
+            state.dislikedPhotos = state.historyExtended.filter((item:IResMoreInfoVote) => item.value === -1);
+            state.loading = 'success';
+        })
+        .addCase(getMoreInfo.pending, (state, action) => {
+            state.loading = 'loading';
         })
 });
 

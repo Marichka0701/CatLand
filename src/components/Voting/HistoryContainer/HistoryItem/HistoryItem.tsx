@@ -27,7 +27,7 @@ const HistoryItem: FC<IProps> = ({item}) => {
 
     useEffect(() => {
         const getData = async () => {
-            await dispatch(votingActions.getMoreInfo({id}));
+            await dispatch(votingActions.getMoreInfo());
         }
         getData();
     }, []);
