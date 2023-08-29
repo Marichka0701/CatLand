@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 import {Pagination} from "@mui/material";
 
 import '../../index.css';
@@ -11,7 +11,7 @@ import {Loader} from "../UI/Loader/Loader";
 import {useAppDispatch, useAppSelector} from "../../hooks/reduxHooks";
 import {votingActions} from "../../redux/slices/votingSlice";
 
-const Dislikes = () => {
+const Dislikes:FC = () => {
     const dispatch = useAppDispatch();
     const {dislikedPhotos, loading} = useAppSelector(state => state.voting);
 

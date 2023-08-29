@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, {FC, useEffect, useState} from 'react';
 import { Pagination } from '@mui/material';
+
 import styles from './Likes.module.scss';
 import Options from '../UI/Options/Options';
 import BackButton from '../UI/BackButton/BackButton';
@@ -8,7 +9,7 @@ import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks';
 import { votingActions } from '../../redux/slices/votingSlice';
 import { Loader } from '../UI/Loader/Loader';
 
-const Likes = () => {
+const Likes:FC = () => {
     const dispatch = useAppDispatch();
     const { likedPhotos, loading } = useAppSelector(state => state.voting);
 
