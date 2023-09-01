@@ -1,24 +1,26 @@
-interface IBreeds {
+interface IBreed {
     id: string;
     name: string;
 }
 
-interface IBreedsId {
+interface ISelectedBreed {
     breeds: {
-        name: string
-        temperament: string;
-        origin: string;
         weight: {
-            imperial: string;
-            metric: string;
-        };
-        life_span: string;
-        description: string;
+            metric: string,
+        },
+        id: string,
+        name: string,
+        temperament: string,
+        origin: string,
+        country_code: string,
+        description: string,
+        life_span: string,
+        reference_image_id: string,
     }[];
 }
 
 
 export type {
-    IBreeds,
-    IBreedsId
+    IBreed,
+    ISelectedBreed,
 }

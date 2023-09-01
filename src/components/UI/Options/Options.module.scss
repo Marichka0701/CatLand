@@ -5,40 +5,90 @@
   display: flex;
   gap: 10px;
 
-  &_form {
-    & > div {
-      width: 32.6vw;
-      height: 60px;
-      position: relative;
+  &_formContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 
-      & > input {
+    &_form {
+      & > div {
         width: 32.6vw;
         height: 60px;
-        border-radius: 20px;
-        padding: 15px 60px 15px 10px;
-        transition: .5s ease-in-out;
+        position: relative;
 
-        color: #8C8C8C;
-        font-size: 20px;
-        line-height: 30px;
+        & > input {
+          width: 32.6vw;
+          height: 60px;
+          border-radius: 20px;
+          padding: 15px 60px 15px 10px;
+          border: 2px solid transparent;
+          transition: .5s ease-in-out;
 
-        &::placeholder {
-          color: #8C8C8C;;
+          color: #8C8C8C;
+          font-size: 20px;
+          line-height: 30px;
+
+          &::placeholder {
+            color: #8C8C8C;;
+          }
+
+          &:hover {
+            transition: .5s ease-in-out;
+            border: 2px solid #FBE0DC;;
+          }
+
+          &:focus {
+            transition: .5s ease-in-out;
+            border: 2px solid #FF868E;
+          }
+        }
+
+        & > div {
+          position: absolute;
+          top: 10px;
+          right: 10px;
+          width: 40px;
+          height: 40px;
+          border-radius: 10px;
+          background: var(--color-hovered);
+          @include flex_center;
+          cursor: pointer;
         }
       }
+    }
 
-      & > div {
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        width: 40px;
-        height: 40px;
-        border-radius: 10px;
-        background: var(--color-hovered);
-        @include flex_center;
+    &_lists {
+      width: 32.6vw;
+      max-height: 200px;
+      overflow-y: auto;
+      background: var(--color-default);
+      padding: 20px;
+      border-radius: 20px;
+      display: none;
+
+      &.visible {
+        display: block;
+      }
+
+      &_item {
+        padding: 5px;
+        color: #8C8C8C;
+        font-size: 16px;
+        line-height: 24px;
         cursor: pointer;
       }
     }
+  }
+
+  &_notFound {
+    width: 100%;
+    padding: 18px 20px;
+    background: #F8F8F7;
+    border-radius: 10px;
+
+    color: #8C8C8C;
+    font-size: 16px;
+    line-height: 24px;
   }
 
   &_operations {

@@ -1,0 +1,36 @@
+@import "src/utils/reset";
+@import "src/utils/mixins";
+
+.searchPage {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  &_content {
+    width: 47.2vw;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 20px;
+    background: #FFFFFF;
+    border-radius: 20px;
+
+    &_loaderContainer {
+      width: 100%;
+      height: 100%;
+      @include flex_center;
+
+      &_loader {
+        position: relative;
+        width: 100%;
+        height: 500px;
+      }
+    }
+
+    &_functions {
+      display: flex;
+      gap: 10px;
+    }
+  }
+}

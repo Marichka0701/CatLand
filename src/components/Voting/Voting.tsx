@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 
 import styles from './Voting.module.scss';
 import Options from "../UI/Options/Options";
@@ -15,69 +15,66 @@ import {votingService} from "../../services/voting.service";
 import {votingActions} from "../../redux/slices/votingSlice";
 import {History} from "swiper/types/modules";
 import HistoryContainer from "./HistoryContainer/HistoryContainer";
+import {favouriteActions} from "../../redux/slices/favouritesSlice";
+import {IResMoreInfoVote} from "../../interfaces/IResMoreInfoVote";
+import {IResVote} from "../../interfaces/IResVote";
 
-const Voting = () => {
+const Voting:FC = () => {
     const dispatch = useAppDispatch();
 
     const [url, setUrl] = useState<string>('');
     const [id, setId] = useState<string>('');
     const [imageId, setImageId] = useState<string>('');
+    // const [allHistory, setAllHistory] = useState<IResVote | IR[]>([]);
 
-    const {randomImage, status} = useAppSelector(state => state.images);
+    const {randomPhotoForVoting, status} = useAppSelector(state => state.images);
     const {sub_id, like, dislike, history} = useAppSelector(state => state.voting);
+    const {favouritePhotos} = useAppSelector(state => state.favourite);
 
     // const {url, id} = randomImage[0];
     const getData = async () => {
-        await dispatch(imagesActions.getRandomImage());
+        await dispatch(imagesActions.getRandomPhotoForVoting());
+        await dispatch(favouriteActions.getAll());
     }
+
+    console.log(favouritePhotos, 'fav photos')
 
     useEffect(() => {
         getData();
     }, [])
 
+    // useEffect(() => {
+        // setAllHistory([...favouritePhotos, ...history]);
+    // }, [history, favouritePhotos])
+
     console.log('history', history)
 
     useEffect(() => {
-        // const setData = () => {
-        //     setUrl(randomImage[0]?.url);
-        //     setId(randomImage[0]?.id);
-        //     setImageId(randomImage[0]?.id);
-        //     // setImageId(url.split('/').slice(-1)[0].split('.')[0]);
-        // }
-
-        if (randomImage && randomImage.length > 0) {
-            setUrl(randomImage[0]?.url);
-            setId(randomImage[0]?.id);
-            setImageId(randomImage[0]?.id);
+        if (randomPhotoForVoting && randomPhotoForVoting.length > 0) {
+            setUrl(randomPhotoForVoting[0]?.url);
+            setId(randomPhotoForVoting[0]?.id);
+            setImageId(randomPhotoForVoting[0]?.id);
         }
-    }, [randomImage]);
+    }, [randomPhotoForVoting]);
 
-    // if (status === 'loading') {
-    //     return <Loader/>
-    // }
-
-    // console.log(url.split('/').slice(-1)[0].split('.')[0], 'url');
     const handleVoteLike = async () => {
         await dispatch(votingActions.vote({params: {image_id: imageId, sub_id, value: like}}));
         await getData();
-        // votingService.vote({image_id: imageId, sub_id, value: like})
-        //     .then(value => console.log(value))
     }
 
     const handleVoteDislike = async () => {
-        // замінити!!
-        // votingService.vote({image_id: imageId, sub_id, value: dislike})
         await dispatch(votingActions.vote({params: {image_id: imageId, sub_id, value: dislike}}));
         await getData();
     }
 
     const handleAddToFavourites = async () => {
-
+        await dispatch(votingActions.addToFavourite({params: {image_id: imageId, sub_id}}));
+        await getData();
     }
 
     return (
         <div className={styles.voting}>
-            <Options/>
+            <Options input_breed_name={''} />
             <div className={styles.voting_content}>
                 <div className={styles.voting_content_functions}>
                     <BackButton link={'/'}/>
@@ -85,50 +82,6 @@ const Voting = () => {
                 </div>
 
                 <div className={styles.voting_content_container}>
-                    {/*<div className={styles.voting_content_container}>*/}
-                    {/*    {*/}
-                    {/*        status === 'loading' ?*/}
-                    {/*            <div className={styles.voting_content_container_loaderContainer}>*/}
-                    {/*                <div className={styles.voting_content_container_loaderContainer_loader}>*/}
-                    {/*                    <Loader/>*/}
-                    {/*                </div>*/}
-                    {/*             </div> : (*/}
-                    {/*                <>*/}
-                    {/*                    <div className={styles.voting_content_container_inner}>*/}
-                    {/*                        <img*/}
-                    {/*                            className={styles.voting_content_container_photo}*/}
-                    {/*                            src={url}*/}
-                    {/*                            alt="cat`s photo"*/}
-                    {/*                        />*/}
-                    {/*                    </div>*/}
-
-                    {/*                    <div className={styles.voting_content_container_rates}>*/}
-                    {/*                        <div*/}
-                    {/*                            onClick={handleVoteLike}*/}
-                    {/*                            className={`${styles.voting_content_container_rates_item} ${styles.voting_content_container_rates_like}`}*/}
-                    {/*                        >*/}
-                    {/*                            <img src={smile} alt="like white icon"/>*/}
-                    {/*                        </div>*/}
-                    {/*                        <div*/}
-                    {/*                            className={`${styles.voting_content_container_rates_item} ${styles.voting_content_container_rates_fav}`}*/}
-                    {/*                        >*/}
-                    {/*                            <img src={fav} alt="favourite white icon"/>*/}
-                    {/*                        </div>*/}
-                    {/*                        <div*/}
-                    {/*                            onClick={handleVoteDislike}*/}
-                    {/*                            className={`${styles.voting_content_container_rates_item} ${styles.voting_content_container_rates_dislike}`}*/}
-                    {/*                        >*/}
-                    {/*                            <img src={sad} alt="dislike white icon"/>*/}
-                    {/*                        </div>*/}
-                    {/*                    </div>*/}
-
-                    {/*                    <HistoryContainer history={history}/></>*/}
-                    {/*        )*/}
-                    {/*    }*/}
-                    {/*</div>*/}
-
-
-
                     {
                         status === 'loading' ?
                             <div className={styles.voting_content_container_loaderContainer}>

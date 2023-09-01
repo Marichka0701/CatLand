@@ -9,6 +9,7 @@ import Voting from "../components/Voting/Voting";
 import Likes from "../components/Likes/Likes";
 import Favourites from "../components/Favourites/Favourites";
 import Dislikes from "../components/Dislikes/Dislikes";
+import SearchPage from "../pages/SearchPage/SearchPage";
 
 const router = createBrowserRouter([
     {
@@ -42,6 +43,10 @@ const router = createBrowserRouter([
             {
                 path: MainRoutes.DISLIKES,
                 element: <Dislikes/>,
+            },
+            {
+                path: MainRoutes.SEARCH,
+                element: <SearchPage/>,
             },
         ]
     }

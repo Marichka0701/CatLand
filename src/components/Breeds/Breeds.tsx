@@ -9,49 +9,61 @@ import {imagesActions} from "../../redux/slices/imagesSlice";
 import GridPhotos from "../UI/GridPhotos/GridPhotos";
 import Options from "../UI/Options/Options";
 import {Loader} from "../UI/Loader/Loader";
+import {IBreed} from "../../interfaces/IBreeds";
 
 const Breeds: FC = () => {
     const dispatch = useAppDispatch();
-    const {breeds, breeds_ids_default} = useAppSelector(store => store.breeds);
-    const {status} = useAppSelector(state => state.images);
+
+    const {breeds} = useAppSelector(store => store.breeds);
+    const {status, photos} = useAppSelector(state => state.images);
 
     const [selectedLimit, setSelectedLimit] = useState<number>(5);
-    const [selectedBreeds, setSelectedBreeds] = useState<string>(null);
+    const [selectedBreed, setSelectedBreed] = useState<string>(null);
+
+    const [photosCount, setPhotosCount] = useState<number>(null);
 
     useEffect(() => {
-        const initialData = async () => {
-            await dispatch(breedsActions.getAll());
-            await dispatch(breedsActions.setCountIds(selectedLimit));
-            await dispatch(imagesActions.getImages({ids: breeds_ids_default, limit: selectedLimit}));
-        }
-        initialData();
-    }, [breeds_ids_default, selectedLimit]);
+        setPhotosCount(photos.length);
+    }, [photos])
 
-    const handleSelectBreeds = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        setSelectedBreeds(e.target.value);
+
+    const getPhotos = async () => {
+        await dispatch(imagesActions.getPhotos({ids: selectedBreed, limit: selectedLimit}));
     }
 
-    useEffect(() => {
-        const filteredBreeds = async () => {
-            await dispatch(imagesActions.getImages({ids: selectedBreeds, limit: selectedLimit}));
-        }
-        filteredBreeds();
-    }, [selectedBreeds, selectedLimit])
+    const getBreeds = async () => {
+        await dispatch(breedsActions.getAll());
+    }
 
-    console.log(selectedBreeds);
+    console.log('breeds', breeds)
+
+    useEffect(() => {
+        getPhotos();
+    }, [selectedBreed, selectedLimit])
+
+    useEffect(() => {
+        getBreeds();
+    }, [])
+
+    const handleSelectBreeds = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        setSelectedBreed(e.target.value);
+    }
+
 
     const handleSelectLimit = (e: React.ChangeEvent<HTMLSelectElement>) => {
         setSelectedLimit(+e.target.value);
     };
 
-    return (
+    console.log(photos.length)
 
+    return (
         <div className={styles.breeds}>
-            <Options/>
+            <Options input_breed_name={''} />
+
             <div className={styles.breeds_content}>
                 <div className={styles.breeds_content_functions}>
                     <BackButton link={'/'}/>
-                    <ButtonPinkSecondPage name={'breeds'} color={'#FF868E'} background={'#FBE0DC'}/>
+                    <ButtonPinkSecondPage name={'breeds'} color={'#FFF'} background={'#FF868E'}/>
 
                     <select
                         className={`${styles.breeds_content_functions_select} ${styles.breeds_content_functions_selectBreeds}`}

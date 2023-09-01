@@ -7,6 +7,7 @@ const MainRoutes = {
     LIKES: '/likes',
     DISLIKES: '/dislikes',
     FAVOURITES: '/favourites',
+    SEARCH: '/search',
 }
 
 export {

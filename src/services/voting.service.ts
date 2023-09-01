@@ -16,6 +16,14 @@ const votingService = {
             order: 'DESC',
         }
     }),
+    // getAllVotes: () => axiosService.get(endPoints.votes.base, {
+    //     headers: {
+    //         'x-api-key': 'live_9XyMuVxuNNkFBccqEtoaWtGFbrek4oEMT80wjhnsz6LJwwbWDtCo7loKnD8h0GX9'
+    //     },
+    //     params: {
+    //         order: 'DESC',
+    //     }
+    // })
 }
 
 export {

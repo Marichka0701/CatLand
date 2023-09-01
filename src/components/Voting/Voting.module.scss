@@ -61,6 +61,10 @@
           height: 80px;
           @include flex_center;
           cursor: pointer;
+
+          &:hover > svg> image {
+            fill: #FFF;
+          }
         }
 
         &_like {

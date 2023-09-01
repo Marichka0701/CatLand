@@ -8,6 +8,7 @@ import {IResVote} from "../../../../interfaces/IResVote";
 import {votingActions} from "../../../../redux/slices/votingSlice";
 import {useAppDispatch, useAppSelector} from "../../../../hooks/reduxHooks";
 import {IResMoreInfoVote} from "../../../../interfaces/IResMoreInfoVote";
+import {favouriteActions} from "../../../../redux/slices/favouritesSlice";
 
 interface IProps extends PropsWithChildren {
     item: IResVote
@@ -17,40 +18,51 @@ const HistoryItem: FC<IProps> = ({item}) => {
     const {value, image_id, id} = item;
     const [time, setTime] = useState<string>();
 
-    const formattedTime = (data:string) => {
+    console.log('props - ', item)
+    const formattedTime = (data: string) => {
         const date = new Date(data);
         return new Date(date.getTime()).toLocaleTimeString();
     }
 
     const dispatch = useAppDispatch();
     const {historyExtended} = useAppSelector(state => state.voting);
+    const {favouritePhotos} = useAppSelector(state => state.favourite);
+
+    console.log(favouritePhotos)
 
     useEffect(() => {
         const getData = async () => {
             await dispatch(votingActions.getMoreInfo());
+            await dispatch(favouriteActions.getAll());
         }
         getData();
     }, []);
 
     useEffect(() => {
-        const specificItem = historyExtended?.find((item:IResMoreInfoVote) => item.id === id);
-        setTime(formattedTime(specificItem?.created_at));
+        const setData = async () => {
+            const specificItem = await historyExtended?.find((item: IResMoreInfoVote) => item.id === id);
+            setTime(formattedTime(specificItem?.created_at));
+        }
+        setData();
     }, [historyExtended])
 
-    const text:Record<string, string> = {
+    const text: Record<string, string> = {
         '1': 'Likes',
-        '-1' : 'Dislikes',
+        '-1': 'Dislikes',
     }
-    const options = text[value.toString()] || 'Favourites';
+    const options = text[value?.toString()] || 'Favourites';
 
     return (
         <div className={styles.history_item}>
             <div>
                 <div className={styles.history_item_time}>
-                    {time}
+                    {options === 'Favourites' ? formattedTime(favouritePhotos[0].created_at) : time !== 'Invalid Date' ? time : ''}
                 </div>
                 <div className={styles.history_item_info}>
-                    Image ID: <span>{image_id}</span> was added to {options}
+                    Image ID: {
+                    options === 'Favourites' ? <span>{favouritePhotos[0].image_id}</span> :
+                        <span>{image_id}</span>
+                } was added to {options}
                 </div>
             </div>
 

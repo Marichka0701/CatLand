@@ -25,14 +25,14 @@ const Dislikes:FC = () => {
         setCurrentPage(newPage);
     };
 
-    const itemsPerPage = 9;
+    const itemsPerPage = 6;
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
     const visibleLikedPhotos = dislikedPhotos.slice(startIndex, endIndex);
 
     return (
         <div className={styles.dislikes}>
-            <Options/>
+            <Options input_breed_name={''} />
             <div className={styles.dislikes_content}>
                 <div className={styles.dislikes_content_functions}>
                     <BackButton link={'/'}/>
@@ -46,6 +46,7 @@ const Dislikes:FC = () => {
                             </div>
                         </div>
                     ) : (
+                        dislikedPhotos ?
                         <div className={styles.dislikes_content_container}>
                             <div className={styles.dislikes_content_container_photos}>
                                 {visibleLikedPhotos.map((item, index) => (
@@ -65,7 +66,10 @@ const Dislikes:FC = () => {
                                 page={currentPage}
                                 onChange={handleChangePage}
                             />
-                        </div>
+                        </div> :
+                            <div className={styles.dislikes_content_notFound}>
+                                No item found
+                            </div>
                     )
                 }
             </div>

@@ -2,31 +2,29 @@ import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import {AxiosError} from "axios";
 
 import {imagesService} from "../../services/imagesService";
-import {IImages} from "../../interfaces/IImages";
+import {IRandomPhoto} from "../../interfaces/IRandomPhoto";
 
 interface IState {
-    // selectedImage: number,
-    images: IImages[],
     status: string,
     error: null,
-    randomImage: IImages[],
-    // order: string,
+    randomPhotoForVoting: IRandomPhoto[],
+    // selectedPhoto: IRandomPhoto,
+    photos: IRandomPhoto[],
 }
 
 const initialState:IState = {
-    // selectedImage: null,
-    images: [],
     status: '',
     error: null,
-    randomImage: [],
-    // order: '',
+    randomPhotoForVoting: [],
+    // selectedPhoto: null,
+    photos: [],
 }
 
-const getImages = createAsyncThunk<IImages[], {ids: string, limit: number}>(
-    'imagesSlice/getImages',
-    async ({ids, limit}, {rejectWithValue}) => {
+const getRandomPhotoForVoting = createAsyncThunk<IRandomPhoto[], void>(
+    'imagesSlice/getRandomPhotoForVoting',
+    async (_, {rejectWithValue}) => {
         try {
-            const {data} = await imagesService.getByIds(ids, limit);
+            const {data} = await imagesService.getRandomPhotoForVoting();
             return data;
         } catch (e) {
             const error = e as AxiosError;
@@ -35,11 +33,11 @@ const getImages = createAsyncThunk<IImages[], {ids: string, limit: number}>(
     }
 )
 
-const getRandomImage = createAsyncThunk<IImages[], void>(
-    'imagesSlice/getRandomImage',
-    async (_, {rejectWithValue}) => {
+const getPhotos = createAsyncThunk<IRandomPhoto[], {ids: string, limit: number}>(
+    'imagesSlice/getPhotos',
+    async ({ids, limit}, {rejectWithValue}) => {
         try {
-            const {data} = await imagesService.getRandom();
+            const {data} = await imagesService.getPhotos(ids, limit);
             return data;
         } catch (e) {
             const error = e as AxiosError;
@@ -52,23 +50,23 @@ const imagesSlice = createSlice({
     name: 'imagesSlice',
     initialState,
     reducers: {
-        // setOrder: (state, action) => {
-        //     state.order = action.payload;
+        // setSelectedPhoto: (state, action) => {
+        //     state.selectedPhoto = action.payload;
         // }
     },
     extraReducers: builder => builder
-        .addCase(getImages.fulfilled, (state, action) => {
-            state.images = action.payload;
+        .addCase(getRandomPhotoForVoting.fulfilled, (state, action) => {
+            state.randomPhotoForVoting = action.payload;
             state.status = 'success';
         })
-        .addCase(getImages.pending, (state, action) => {
+        .addCase(getRandomPhotoForVoting.pending, (state, action) => {
             state.status = 'loading';
         })
-        .addCase(getRandomImage.fulfilled, (state, action) => {
-            state.randomImage = action.payload;
+        .addCase(getPhotos.fulfilled, (state, action) => {
+            state.photos = action.payload;
             state.status = 'success';
         })
-        .addCase(getRandomImage.pending, (state, action) => {
+        .addCase(getPhotos.pending, (state, action) => {
             state.status = 'loading';
         })
 });
@@ -77,8 +75,8 @@ const {reducer: imagesReducer, actions} = imagesSlice;
 
 const imagesActions = {
     ...actions,
-    getImages,
-    getRandomImage,
+    getRandomPhotoForVoting,
+    getPhotos,
 }
 
 export {

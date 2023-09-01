@@ -6,7 +6,6 @@
   flex-direction: column;
   gap: 10px;
 
-
   &_content {
     width: 47.2vw;
     display: flex;
@@ -34,6 +33,10 @@
         option {
           background: #FFFFFF;
           border-radius: 30px;
+
+          &:disabled {
+            background: rgba(211, 211, 211, 0.3);
+          }
         }
       }
 

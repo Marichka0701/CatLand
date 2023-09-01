@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 import {Swiper, SwiperSlide} from 'swiper/react';
 import {Pagination} from 'swiper/modules';
 
@@ -16,27 +16,25 @@ import BackButton from "../../UI/BackButton/BackButton";
 import ButtonPinkSecondPage from "../../UI/ButtonPinkSecondPage/ButtonPinkSecondPage";
 import {imagesActions} from "../../../redux/slices/imagesSlice";
 import {Loader} from "../../UI/Loader/Loader";
-import {breedsActions} from "../../../redux/slices/breedsSlice";
 
-const DetailedBreeds = () => {
+const DetailedBreeds:FC = () => {
     const [showLoader, setShowLoader] = useState<boolean>(true);
 
     const {id} = useParams();
 
-    const {images} = useAppSelector(state => state.images);
+    const {photos} = useAppSelector(state => state.images);
+    const getRandomPhotosByBreed = async () => {
+        await dispatch(imagesActions.getPhotos({ids: id, limit: 5}));
+    }
 
     const dispatch = useAppDispatch();
 
-    const {breeds} = useAppSelector(state => state.breeds.selected_breeds);
-
+    const {selected_breed: {breeds} } = useAppSelector(state => state.breeds);
     const {name, temperament, origin, weight: {metric}, life_span, description} = breeds[0];
 
+
     useEffect(() => {
-        const getBreedById = async () => {
-            // await dispatch(breedsActions.getById({id}));
-            await dispatch(imagesActions.getImages({ids: id, limit: 5}));
-        }
-        getBreedById();
+        getRandomPhotosByBreed();
 
         const timeout = setTimeout(() => {
             setShowLoader(false);
@@ -50,7 +48,7 @@ const DetailedBreeds = () => {
 
     return (
         <div className={styles.detailedBreeds}>
-            <Options/>
+            <Options input_breed_name={''} />
 
             <div className={styles.detailedBreeds_content}>
                 <div className={styles.detailedBreeds_content_functions}>
@@ -68,20 +66,19 @@ const DetailedBreeds = () => {
                         <div className={styles.detailedBreeds_content_container}>
                         <div className={styles.detailedBreeds_content_container_swiper}>
                             <Swiper
-                                // slidesPerView={1}
-                                // loop={true}
-                                // pagination={{
-                                //     clickable: true,
-                                // }}
-                                //
-                                // navigation={true}
-                                //
-                                // modules={[Pagination]}
+                                slidesPerView={1}
+                                loop={true}
+                                pagination={{
+                                    clickable: true,
+                                }}
+                                spaceBetween={'20px'}
+                                modules={[Pagination]}
                                 className="mySwiper"
                             >
                                 {
-                                    images.map((item, index) => <SwiperSlide>
+                                    photos.map((item, index) => <SwiperSlide>
                                         <img
+                                            key={index}
                                             className={styles.detailedBreeds_content_container_swiper_item}
                                             src={item.url}
                                             alt="cat`s photo"
