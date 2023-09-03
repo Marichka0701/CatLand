@@ -8,6 +8,11 @@
   flex-direction: column;
   gap: 100px;
 
+
+  &.modalIsOpen {
+    z-index: -1;
+  }
+
   &_titles {
     display: flex;
     flex-direction: column;

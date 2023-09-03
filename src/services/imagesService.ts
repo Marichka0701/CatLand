@@ -50,6 +50,18 @@ const imagesService = {
             breed_ids: ids,
             limit,
         }
+    }),
+
+    uploadPhoto: (file: File, sub_id: string) => axiosService.post(endPoints.images.upload, {file, sub_id}, {
+        headers: {
+            'x-api-key': 'live_9XyMuVxuNNkFBccqEtoaWtGFbrek4oEMT80wjhnsz6LJwwbWDtCo7loKnD8h0GX9',
+            "Content-type": "multipart/form-data"
+        },
+    }),
+    getUploadedPhotos: () => axiosService.get(endPoints.images.getUploaded, {
+        headers: {
+            'x-api-key': 'live_9XyMuVxuNNkFBccqEtoaWtGFbrek4oEMT80wjhnsz6LJwwbWDtCo7loKnD8h0GX9'
+        },
     })
 }
 

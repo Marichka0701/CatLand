@@ -5,10 +5,13 @@ import voting from "./images/voting.png";
 import Button from "../UI/Button/Button";
 import breeds from "./images/breeds.png";
 import gallery from "./images/gallery.png";
+import {useAppSelector} from "../../hooks/reduxHooks";
 
 const LeftSide:FC = () => {
+    const {modalIsOpen} = useAppSelector(state => state.UI);
+
     return (
-        <div className={styles.leftSide}>
+        <div className={`${styles.leftSide} ${modalIsOpen ? styles.modalIsOpen : ''}`}>
             <div className={styles.leftSide_titles}>
                 <h1>Hi!👋</h1>
                 <p>Welcome to CatLand🐾</p>

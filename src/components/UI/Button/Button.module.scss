@@ -22,7 +22,7 @@
     background: var(--color-hovered);
   }
 
-  &:active {
+  &:active, &.active {
     color: var(--color-default);
     transition: .5s;
     background: var(--color-active);

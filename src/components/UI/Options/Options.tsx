@@ -74,12 +74,6 @@ const Options: FC<IProps> = ({input_breed_name}) => {
         getBreeds();
     }, [])
 
-    // useEffect(() => {
-    //
-    // }, [filtered_breeds])
-
-    console.log('is visible', isListVisible)
-
     return (
         <div className={styles.options}>
             <div className={styles.options_formContainer}>
@@ -90,6 +84,7 @@ const Options: FC<IProps> = ({input_breed_name}) => {
                             type="text"
                             placeholder={'Search for breeds by name'}
                             value={input_breed_name}
+                            autoFocus={!!input_breed_name}
                         />
                         <div>
                             <img src={search} alt="search icon"/>

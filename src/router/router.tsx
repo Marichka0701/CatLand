@@ -10,6 +10,7 @@ import Likes from "../components/Likes/Likes";
 import Favourites from "../components/Favourites/Favourites";
 import Dislikes from "../components/Dislikes/Dislikes";
 import SearchPage from "../pages/SearchPage/SearchPage";
+import GalleryPage from "../pages/GalleryPage/GalleryPage";
 
 const router = createBrowserRouter([
     {
@@ -47,6 +48,14 @@ const router = createBrowserRouter([
             {
                 path: MainRoutes.SEARCH,
                 element: <SearchPage/>,
+            },
+            {
+                path: MainRoutes.SEARCH,
+                element: <SearchPage/>,
+            },
+            {
+                path: MainRoutes.GALLERY,
+                element: <GalleryPage/>,
             },
         ]
     }
