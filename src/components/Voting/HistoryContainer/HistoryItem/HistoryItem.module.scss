@@ -9,18 +9,40 @@
   align-items: center;
   justify-content: space-between;
 
-  &>div {
-    display: flex;
+  @include onMobileSmall {
     gap: 20px;
   }
 
+  &>div {
+    display: flex;
+    gap: 20px;
+
+    @include onMobileSmall {
+      flex-wrap: wrap;
+    }
+  }
+
   &_time {
+    @include flex_center;
     padding: 3px 10px;
     border-radius: 5px;
     background: var(--color-default);
 
     color: #1D1D1D;
     line-height: 24px;
+
+    @include onMobileLarge {
+      padding: 3px;
+    }
+
+    @include onMobileMedium {
+      padding: 3px;
+    }
+
+    @include onMobileSmall {
+      width: 100%;
+      padding: 3px;
+    }
   }
 
   &_info {

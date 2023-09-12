@@ -13,6 +13,22 @@
   padding: 20px;
   background: #FFFFFF;
   border-radius: 20px;
+
+  @include onTablet {
+    width: 100%;
+  }
+
+  @include onMobileLarge {
+    width: 100%;
+  }
+
+  @include onMobileMedium {
+    width: 100%;
+  }
+
+  @include onMobileSmall {
+    width: 100%;
+  }
 }
 
 @mixin not_found {
@@ -34,6 +50,24 @@
 
 @mixin onTablet {
   @media screen and (768px <= width <= 1024px) {
+    @content;
+  }
+}
+
+@mixin onMobileLarge {
+  @media screen and (425px <= width <= 768px) {
+    @content;
+  }
+}
+
+@mixin onMobileMedium {
+  @media screen and (375px <= width <= 425px) {
+    @content;
+  }
+}
+
+@mixin onMobileSmall {
+  @media screen and (320px <= width <= 375px) {
     @content;
   }
 }

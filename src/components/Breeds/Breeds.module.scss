@@ -13,6 +13,27 @@
       @include flex_center;
       gap: 10px;
 
+      @include onMobileLarge {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        justify-content: flex-start;
+      }
+
+      @include onMobileMedium {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        justify-content: flex-start;
+      }
+
+      @include onMobileSmall {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        justify-content: flex-start;
+      }
+
       &_select {
         border-radius: 10px;
         background: #F8F8F7;
@@ -42,15 +63,6 @@
         width: 110px;
         height: 40px;
       }
-
-      //&_button {
-      //  width: 40px;
-      //  height: 40px;
-      //  border-radius: 10px;
-      //  background: #F8F8F7;
-      //  @include flex_center;
-      //  cursor: pointer;
-      //}
     }
 
     &_loaderContainer {

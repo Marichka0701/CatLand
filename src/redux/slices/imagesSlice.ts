@@ -7,20 +7,20 @@ import {IUploadedPhoto} from "../../interfaces/IUploadedPhoto";
 
 interface IState {
     status: string,
-    error: null,
+    error: string,
     randomPhotoForVoting: IRandomPhoto[],
-    // selectedPhoto: IRandomPhoto,
     photos: IRandomPhoto[],
     uploadedPhotos: IUploadedPhoto[],
+    uploadResponseStatus: number,
 }
 
 const initialState:IState = {
     status: '',
-    error: null,
+    error: '',
     randomPhotoForVoting: [],
-    // selectedPhoto: null,
     photos: [],
     uploadedPhotos: [],
+    uploadResponseStatus: null,
 }
 
 const getRandomPhotoForVoting = createAsyncThunk<IRandomPhoto[], void>(
@@ -49,25 +49,12 @@ const getPhotos = createAsyncThunk<IRandomPhoto[], {ids: string, limit: number}>
     }
 )
 
-const uploadPhoto = createAsyncThunk<void, {file: File, sub_id: string}>(
+const uploadPhoto = createAsyncThunk<{data: IUploadedPhoto, status: number}, {file: File, sub_id: string}>(
     'imagesSlice/uploadPhoto',
     async ({file, sub_id}, {rejectWithValue}) => {
         try {
-            await imagesService.uploadPhoto(file, sub_id);
-        } catch (e) {
-            const error = e as AxiosError;
-            return rejectWithValue(error.response.data);
-        }
-    }
-)
-
-const getUploadedPhotos = createAsyncThunk<IUploadedPhoto[], void>(
-    'imagesSlice/getUploadedPhotos',
-    async (_, {rejectWithValue}) => {
-        try {
-            const {data} = await imagesService.getUploadedPhotos();
-            return data;
-
+            const {data, status} = await imagesService.uploadPhoto(file, sub_id);
+            return {data, status};
         } catch (e) {
             const error = e as AxiosError;
             return rejectWithValue(error.response.data);
@@ -79,9 +66,7 @@ const imagesSlice = createSlice({
     name: 'imagesSlice',
     initialState,
     reducers: {
-        // setSelectedPhoto: (state, action) => {
-        //     state.selectedPhoto = action.payload;
-        // }
+
     },
     extraReducers: builder => builder
         .addCase(getRandomPhotoForVoting.fulfilled, (state, action) => {
@@ -98,18 +83,18 @@ const imagesSlice = createSlice({
         .addCase(getPhotos.pending, (state, action) => {
             state.status = 'loading';
         })
-        .addCase(getUploadedPhotos.fulfilled, (state, action) => {
-            // if (Array.isArray(action.payload)) {
-            console.log(...action.payload, 'action payload')
-            console.log(...state.uploadedPhotos, 'state')
-                state.uploadedPhotos = [...state.uploadedPhotos, ...action.payload];
-            // } else {
-            //     state.uploadedPhotos = [...state.uploadedPhotos, action.payload];
-            // }
+        .addCase(uploadPhoto.fulfilled, (state, action) => {
+            state.uploadedPhotos = [...state.uploadedPhotos, action.payload.data];
+            state.uploadResponseStatus = action.payload.status;
             state.status = 'success';
+            state.error = '';
         })
-        .addCase(getUploadedPhotos.pending, (state, action) => {
+        .addCase(uploadPhoto.pending, (state, action) => {
             state.status = 'loading';
+        })
+        .addCase(uploadPhoto.rejected, (state, action) => {
+            state.error = action.payload as string;
+            state.uploadResponseStatus = 400;
         })
 });
 
@@ -120,7 +105,6 @@ const imagesActions = {
     getRandomPhotoForVoting,
     getPhotos,
     uploadPhoto,
-    getUploadedPhotos,
 }
 
 export {

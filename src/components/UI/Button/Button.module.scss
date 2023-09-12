@@ -17,6 +17,10 @@
   letter-spacing: 2px;
   text-transform: uppercase;
 
+  @include onMobileSmall {
+    width: 120px;
+  }
+
   &:hover {
     transition: .5s;
     background: var(--color-hovered);

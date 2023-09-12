@@ -11,7 +11,7 @@ const MainLayout:FC = () => {
 
     return (
         <div className={`${styles.mainLayout} ${modalIsOpen ? styles.modalIsOpen : ''}`}>
-            <div className={styles.mainLayout_leftSide}>
+            <div className={`${styles.mainLayout_leftSide} ${modalIsOpen ? styles.modalIsOpen : ''}`}>
                 <Header/>
                 <LeftSide/>
             </div>

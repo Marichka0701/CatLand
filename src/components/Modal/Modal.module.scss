@@ -5,13 +5,33 @@
   position: relative;
   @include flex_center;
   flex-direction: column;
-  gap: 40px;
+  gap: 20px;
   padding: 20px;
-  margin-bottom: 30px;
+  //margin-bottom: 30px;
   width: 47.2vw;
   height: 100%;
   border-radius: 20px;
   background: #F8F8F7;
+
+  @include onTablet {
+    width: 90vw;
+    height: auto;
+  }
+
+  @include onMobileLarge {
+    width: 90vw;
+    height: auto;
+  }
+
+  @include onMobileMedium {
+    width: 90vw;
+    height: auto;
+  }
+
+  @include onMobileSmall {
+    width: 90vw;
+    height: auto;
+  }
 
   &_close {
     position: absolute;
@@ -33,6 +53,7 @@
       color: #1D1D1D;
       font-size: 36px;
       font-weight: 500;
+      margin-right: 50px;
     }
 
     &_description {
@@ -48,6 +69,7 @@
 
   &_upload {
     @include flex_center;
+    flex-wrap: wrap;
     width: 100%;
     height: 320px;
     border-radius: 20px;
@@ -59,6 +81,11 @@
     font-size: 20px;
     line-height: 30px;
 
+    &.rejected {
+      border: 2px dashed #FF868E;
+      background: #FBE0DC no-repeat center;
+    }
+
     & span {
       color: #1D1D1D;
       font-weight: 500;
@@ -68,6 +95,21 @@
       border-radius: 20px;
       width: 400px;
       height: 100%;
+
+      @include onMobileLarge {
+        width: 75%;
+        height: 90%;
+      }
+
+      @include onMobileMedium {
+        width: 90%;
+        height: 75%;
+      }
+
+      @include onMobileSmall {
+        width: 90%;
+        height: 75%;
+      }
     }
   }
 
@@ -88,5 +130,19 @@
     line-height: 133.333%;
     letter-spacing: 2px;
     text-transform: uppercase;
+  }
+
+  &_isRecognized {
+    padding: 20px;
+    width: 100%;
+    border-radius: 10px;
+    background: #FFF;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    color: #8C8C8C;
+    font-size: 16px;
+    line-height: 24px;
   }
 }

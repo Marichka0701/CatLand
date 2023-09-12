@@ -14,7 +14,7 @@ const endPoints = {
     images: {
         base: `${images}/search`,
         upload: `${images}/upload`,
-        getUploaded: images,
+        // getUploaded: images,
     },
     votes: {
         base: votes,

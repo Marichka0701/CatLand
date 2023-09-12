@@ -6,6 +6,22 @@
   flex-direction: column;
   gap: 10px;
 
+  @include onTablet {
+    align-items: center;
+  }
+
+  @include onMobileLarge {
+    align-items: center;
+  }
+
+  @include onMobileMedium {
+    align-items: center;
+  }
+
+  @include onMobileSmall {
+    align-items: center;
+  }
+
   &_content {
     @include content;
     height: 100%;
@@ -14,6 +30,21 @@
       width: 100%;
       display: flex;
       justify-content: space-between;
+
+      @include onMobileLarge {
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      @include onMobileMedium {
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      @include onMobileSmall {
+        flex-wrap: wrap;
+        gap: 10px;
+      }
 
       &>div:nth-child(1) {
         display: flex;
@@ -41,6 +72,18 @@
 
     &_photos {
       width: 100%;
+
+      &_loaderContainer {
+        width: 100%;
+        height: 100%;
+        @include flex_center;
+
+        &_loader {
+          position: relative;
+          width: 100%;
+          height: 500px;
+        }
+      }
 
       &_container {
         width: 100%;

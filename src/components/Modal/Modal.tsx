@@ -7,11 +7,15 @@ import close from '../../constants/images/close_button.png';
 import {UIActions} from "../../redux/slices/UISlice";
 import {useAppDispatch, useAppSelector} from "../../hooks/reduxHooks";
 import {imagesActions} from "../../redux/slices/imagesSlice";
-import ButtonPinkSecondPage from "../UI/ButtonPinkSecondPage/ButtonPinkSecondPage";
+import successful from '../../constants/images/successful.png';
+import rejected from '../../constants/images/rejected.png';
 
 const Modal: FC = () => {
     const [selectedPhoto, setSelectedPhoto] = useState<string>('');
     const [filename, setFilename] = useState<string>('');
+    const [file, setFile] = useState<File>(null);
+
+    const {uploadResponseStatus} = useAppSelector(state => state.images);
 
     const dispatch = useAppDispatch();
 
@@ -30,6 +34,7 @@ const Modal: FC = () => {
 
         if (file) {
             setFilename(file.name);
+            setFile(fileInputRef.current?.files?.[0]);
             const imageURL = URL.createObjectURL(file);
             setSelectedPhoto(imageURL);
         }
@@ -37,9 +42,15 @@ const Modal: FC = () => {
 
     const handleUploadPhoto = async () => {
         if (selectedPhoto) {
-            await dispatch(imagesActions.uploadPhoto({file: fileInputRef.current?.files?.[0], sub_id: 'marichka_tanechnyk'}));
+            await dispatch(imagesActions.uploadPhoto({file, sub_id: 'marichka_tanechnyk'}));
         }
+        // setSelectedPhoto('');
+
+        // closing modal if response was successful
+        // uploadResponseStatus === 201 && dispatch(UIActions.setModalIsOpen(false));
     }
+
+    console.log(uploadResponseStatus)
 
     return (
         <div className={styles.modal}>
@@ -69,8 +80,8 @@ const Modal: FC = () => {
 
             <div
                 onClick={handleRefToInput}
-                style={{backgroundImage: `url(${uploadBackground})`}}
-                className={styles.modal_upload}
+                style={{backgroundImage: selectedPhoto ? '' : `url(${uploadBackground})`}}
+                className={`${styles.modal_upload} ${uploadResponseStatus === 400 ? styles.rejected : ''}`}
             >
                 {
                     selectedPhoto ?
@@ -84,18 +95,29 @@ const Modal: FC = () => {
 
             <div className={styles.modal_status}>
                 {
-                    filename ?
+                    selectedPhoto ?
                         <span>Image File Name: {filename}</span> :
                         <span>No file selected</span>
                 }
             </div>
 
             {
-                selectedPhoto &&
+                (selectedPhoto && !uploadResponseStatus) ?
                 <button
                     onClick={handleUploadPhoto}
                     className={styles.modal_uploadButton}
-                >Upload photo</button>
+                >Upload photo</button> :
+                    (
+                        (uploadResponseStatus && selectedPhoto) &&
+                        <div className={styles.modal_isRecognized}>
+                            <img
+                                src={uploadResponseStatus === 201 ? successful : rejected}
+                                alt={`${uploadResponseStatus === 201 ? 'successful' : 'rejected'} request icon`}
+                            />
+                            <p>{uploadResponseStatus === 201 ? 'Thanks for the Upload - Cat found!' : 'No Cat found - try a different one'}</p>
+                        </div>
+                    )
+
             }
         </div>
     );

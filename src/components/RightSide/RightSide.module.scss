@@ -7,4 +7,37 @@
   border-radius: 20px;
   background: #FBE0DC;
   @include flex_center;
+
+  @include onMobileLarge {
+    height: auto;
+    width: 100%;
+  }
+
+  @include onMobileMedium {
+    height: auto;
+    width: 100%;
+  }
+
+  @include onMobileSmall {
+    height: auto;
+    width: 100%;
+  }
+
+  //@include onTablet {
+  //  width: 100%;
+  //}
+  //
+  & img {
+    @include onMobileLarge {
+      width: 75%;
+    }
+
+    @include onMobileMedium {
+      width: 75%;
+    }
+
+    @include onMobileSmall {
+      width: 75%;
+    }
+  }
 }

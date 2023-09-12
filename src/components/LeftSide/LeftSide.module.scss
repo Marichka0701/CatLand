@@ -8,6 +8,13 @@
   flex-direction: column;
   gap: 100px;
 
+  @include onTablet {
+    width: 100%;
+  }
+
+  @include onMobileSmall {
+    gap: 50px;
+  }
 
   &.modalIsOpen {
     z-index: -1;
@@ -36,10 +43,29 @@
     display: flex;
     gap: 16px;
 
+    @include onMobileLarge {
+      flex-wrap: wrap;
+      justify-content: space-around;
+    }
+
+    @include onMobileMedium {
+      flex-wrap: wrap;
+      justify-content: space-around;
+    }
+
+    @include onMobileSmall {
+      flex-wrap: wrap;
+      justify-content: space-around;
+    }
+
     &_option {
       @include flex_center;
       flex-direction: column;
       gap: 10px;
+
+      @include onTablet {
+        width: 20vw;
+      }
 
       &_standard {
         width: 140px;
@@ -47,6 +73,12 @@
         border-radius: 20px;
         @include flex_center;
         transition: .5s;
+
+        @include onMobileSmall {
+          width: 120px;
+          height: 180px;
+        }
+
         &:hover {
           border-color: #FFF;
           transition: .5s;
@@ -54,6 +86,25 @@
         &:active {
           border-color: #FBE0DC;
           transition: .5s;
+        }
+      }
+
+      &_voting, &_breeds, &_gallery {
+        @include onTablet {
+          width: 20vw;
+          height: 250px;
+        }
+
+        & img {
+          @include onTablet {
+            width: 100%;
+            height: 60%;
+          }
+
+          @include onMobileSmall {
+            width: 90%;
+            height: 80%;
+          }
         }
       }
 

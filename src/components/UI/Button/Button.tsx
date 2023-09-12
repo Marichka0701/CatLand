@@ -1,7 +1,7 @@
 import React, {FC, PropsWithChildren} from 'react';
 
 import styles from './Button.module.scss';
-import {useLocation, useNavigate, useParams} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 
 interface IProps extends PropsWithChildren {
     name: string,

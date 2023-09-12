@@ -1,4 +1,4 @@
-import React, {FC, useEffect} from 'react';
+import React, {FC} from 'react';
 
 import styles from './GalleryPage.module.scss';
 import Options from "../../components/UI/Options/Options";
@@ -8,25 +8,16 @@ import upload from '../../constants/images/upload.png';
 import Modal from "../../components/Modal/Modal";
 import {useAppDispatch, useAppSelector} from "../../hooks/reduxHooks";
 import {UIActions} from "../../redux/slices/UISlice";
-import {imagesActions} from "../../redux/slices/imagesSlice";
+import {Loader} from "../../components/UI/Loader/Loader";
 
 const GalleryPage: FC = () => {
     const dispatch = useAppDispatch();
     const {modalIsOpen} = useAppSelector(state => state.UI);
-    const {uploadedPhotos} = useAppSelector(state => state.images);
+    const {uploadedPhotos, status} = useAppSelector(state => state.images);
 
-    console.log(uploadedPhotos)
     const handleOpenModal = () => {
         dispatch(UIActions.setModalIsOpen(true));
     };
-
-    const getData = async () => {
-        await dispatch(imagesActions.getUploadedPhotos());
-    }
-
-    useEffect(() => {
-        getData();
-    }, [])
 
     return (
         <div className={styles.gallery}>
@@ -54,7 +45,7 @@ const GalleryPage: FC = () => {
                             </div>
                             <div className={styles.gallery_content_photos}>
                                 {
-                                    uploadedPhotos ?
+                                    uploadedPhotos.length !==0 ?
                                         <div className={styles.gallery_content_photos_container}>
                                             {
                                                 uploadedPhotos.map((item, index) =>
@@ -66,9 +57,19 @@ const GalleryPage: FC = () => {
                                                     />)
                                             }
                                         </div> :
-                                        <div className={styles.gallery_content_photos_notFound}>
-                                            No item found
-                                        </div>
+                                        <>
+                                            {
+                                                status === 'loading' ?
+                                                    <div className={styles.gallery_content_photos_loaderContainer}>
+                                                        <div className={styles.gallery_content_photos_loaderContainer_loader}>
+                                                            <Loader/>
+                                                        </div>
+                                                    </div> :
+                                                <div className={styles.gallery_content_photos_notFound}>
+                                                    There are no photos uploaded by you :(
+                                                </div>
+                                            }
+                                        </>
                                 }
                             </div>
                         </div>

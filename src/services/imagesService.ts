@@ -58,11 +58,11 @@ const imagesService = {
             "Content-type": "multipart/form-data"
         },
     }),
-    getUploadedPhotos: () => axiosService.get(endPoints.images.getUploaded, {
-        headers: {
-            'x-api-key': 'live_9XyMuVxuNNkFBccqEtoaWtGFbrek4oEMT80wjhnsz6LJwwbWDtCo7loKnD8h0GX9'
-        },
-    })
+    // getUploadedPhotos: () => axiosService.get(endPoints.images.getUploaded, {
+    //     headers: {
+    //         'x-api-key': 'live_9XyMuVxuNNkFBccqEtoaWtGFbrek4oEMT80wjhnsz6LJwwbWDtCo7loKnD8h0GX9'
+    //     },
+    // })
 }
 
 export {
